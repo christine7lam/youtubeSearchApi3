@@ -20,6 +20,7 @@ var searchStore = Reflux.createStore({
         request
             .post(SEARCH_ENDPOINT)
             .set('Content-Type', 'application/json')
+            .accept('application/json')
             .send({
                 data: {
                     q: data.q,

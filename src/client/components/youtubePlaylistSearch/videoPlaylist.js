@@ -46,7 +46,7 @@ var Playlist = React.createClass({
         );
     },
     _onSearch: function(data) {
-        alert("passing back"+data.status);
+        alert("passing back"+data.responseText);
     }
 });
 
