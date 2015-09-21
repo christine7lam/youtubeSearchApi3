@@ -12,5 +12,6 @@ module.exports = (
 
         <Route name="validation" handler={Validation} path="/validation" />
         <Route name="playlistsearch" handler={YoutubePlaylistSearch} path="/playlistsearch" />
+        <Route name="artistsearch" handler={YoutubePlaylistSearch} path="/playlistsearch/:artist" />
     </Route>
 );

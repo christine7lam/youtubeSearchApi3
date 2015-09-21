@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 
 router.get(
-    ['/', '/validation','/playlistsearch'
+    ['/', '/validation','/playlistsearch', '/playlistsearch/*'
     ],
     function(req, res) {
         res.render('index', { title: 'Device Manager' });

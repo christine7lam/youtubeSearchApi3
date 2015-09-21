@@ -28,7 +28,7 @@ var Playlist = React.createClass({
         }
 
         //load all assets
-        PlaylistAction.loadVideos(jsonString);
+        PlaylistAction.getVideos(jsonString.q);
     },
     render : function(){
         return (
@@ -46,7 +46,7 @@ var Playlist = React.createClass({
         );
     },
     _onSearch: function(data) {
-        alert("passing back"+data.responseText);
+        alert("passing back"+data.body.results);
     }
 });
 
