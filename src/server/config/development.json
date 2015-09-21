@@ -1,0 +1,31 @@
+{
+  "env": "test",
+  "endpoints": {
+    "dataModel": {
+      "host": "208.50.140.121",
+      "port": "8080"
+    }
+  },
+  "express": {
+    "logger": true,
+    "public":  {
+      "dir": "./build"
+    },
+    "session": {
+      "host": "192.168.4.31",
+      "port": 6379,
+      "secret": "dev-SeCr3t!_toodles"
+    },
+    "template": {
+      "cache": false,
+      "ext": "ejs"
+    }
+  },
+  "http": {
+    "port": 80
+  },
+  "statsd": {
+    "host": "192.168.4.60",
+    "port": 8125
+  }
+}
