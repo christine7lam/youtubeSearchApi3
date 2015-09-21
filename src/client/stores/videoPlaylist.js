@@ -2,7 +2,7 @@
  * Created by heipakchristine on 7/28/15.
  */
 var Reflux = require('reflux');
-var PlaylistAction = require('../actions/videoPlaylist');
+var SearchAction = require('../actions/videoPlaylist');
 
 var request = require('superagent');
 
@@ -10,22 +10,27 @@ const SEARCH_ENDPOINT = '/services/search';
 
 var searchStore = Reflux.createStore({
     init: function() {
-        this.listenTo(PlaylistAction.loadVideos, this._search);
+        this.listenTo(SearchAction.loadVideos, this._search);
 
-        this.listenTo(PlaylistAction.completed, this.trigger);
-        this.listenTo(PlaylistAction.failed, this.trigger);
+        this.listenTo(SearchAction.completed, this.trigger);
+        this.listenTo(SearchAction.failed, this.trigger);
 
     },
-    _search: function(data) {
+    _search: function(data) {   console.log("in client route: "+data.q);
         request
-            .get(SEARCH_ENDPOINT)
+            .post(SEARCH_ENDPOINT)
             .set('Content-Type', 'application/json')
-            .accept('application/json')
+            .send({
+                data: {
+                    q: data.q,
+                    maxResults: data.maxResults
+                }
+            })
             .end(function(err, res) {
                 if (err == null) {
-                    PlaylistAction.completed(res);
+                    SearchAction.completed(res, data);
                 } else {
-                    PlaylistAction.failed(res);
+                    SearchAction.failed(err);
                 }
             });
     }

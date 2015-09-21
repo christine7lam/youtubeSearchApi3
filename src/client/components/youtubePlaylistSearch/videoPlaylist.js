@@ -19,28 +19,34 @@ var Playlist = React.createClass({
         }
     },
     componentDidMount: function() {
-        this.listenTo(SearchStore, this.onStoreUpdate);
+        this.listenTo(SearchStore, this._onSearch);
+    },
+    getVideos: function() {
+        var jsonString = {
+            q:  this.refs.artist.getDOMNode().value,
+            maxResults: "15"
+        }
 
         //load all assets
-        PlaylistAction.loadVideos();
-    },
-    onStoreUpdate: function(data) {
-
-        //normalize asset status on store update
-        if (videos.length > 0) {
-            videos.forEach(function(video, index) {
-                alert(video);
-            });
-        } else {
-             videos = [];
-        }
+        PlaylistAction.loadVideos(jsonString);
     },
     render : function(){
         return (
             <div className="container">
                     testing you tube page
+                    <div className="form-group col-md-2">
+                        <select className="form-control" id="artist" ref="artist" onChange={this.getVideos}>
+                        <option>Select an artist</option>
+                        <option>The Script</option>
+                        <option>Elton John</option>
+                        <option>Stevie Wonder</option>
+                        </select>
+                    </div>
                 </div>
         );
+    },
+    _onSearch: function(data) {
+        alert("passing back"+data.status);
     }
 });
 

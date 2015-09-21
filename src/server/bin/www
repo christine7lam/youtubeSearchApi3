@@ -82,6 +82,8 @@ function onError(error) {
  */
 
 function onListening() {
+    console.log('Loading configuration: ' + app.get('env'));
+    console.log('StatsD relay: ' + app.locals.config.get('statsd').host + ':' + app.locals.config.get('statsd').port);
   var addr = server.address();
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr

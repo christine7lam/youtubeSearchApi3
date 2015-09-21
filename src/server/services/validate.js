@@ -11,7 +11,7 @@ module.exports = {
 
     validate: function(data) {
 
-        var DIRECTORY_ENDPOINT = 'http://10.192.243.23:8080/ingestservice/rest/discovery/';
+        var DIRECTORY_ENDPOINT = getUri('/ingestservice/rest/discovery/');
 
         return request.postAsync(DIRECTORY_ENDPOINT, {
             json: true,
@@ -28,3 +28,15 @@ module.exports = {
 
     }
 };
+
+function getUri(path) {
+
+    var dataModelConfig = app.locals.config.get('endpoints').datamodel;
+
+    return app.locals.config.createUri({
+        protocol: 'http',
+        host: dataModelConfig.host,
+        port: dataModelConfig.port,
+        path: path
+    });
+}
