@@ -9,7 +9,7 @@ var YoutubePlaylistSearch = require('./components/youtubePlaylistSearch/videoPla
 
 module.exports = (
     <Route handler={Application} path="/">
-        <DefaultRoute name="dashboard" handler={Validation} />
+        <DefaultRoute name="dashboard" handler={YoutubePlaylistSearch} />
 
         <Route name="validation" handler={Validation} path="/validation" />
         <Route name="playlistsearch" handler={YoutubePlaylistSearch} path="/playlistsearch" />

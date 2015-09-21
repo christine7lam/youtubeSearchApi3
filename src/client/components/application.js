@@ -5,19 +5,10 @@ var io = require('socket.io-client');
 
 var RouteHandler = Router.RouteHandler;
 
-//components
-var Header = require('./header/header');
-var AlertHandler = require('./common/alert-handler');
-
 var Application = React.createClass({
     mixins: [Reflux.ListenerMixin],
     contextTypes: {
         router: React.PropTypes.func
-    },
-    getInitialState: function() {
-        return {
-            user: {}
-        };
     },
     componentDidMount: function() {
 
@@ -27,16 +18,9 @@ var Application = React.createClass({
     render: function() {
         return (
             <div className="app">
-                <Header
-                    user={this.state.user}
-                    onLogout={this.logout} />
-                <AlertHandler />
-                <RouteHandler user={this.state.user} />
+                <RouteHandler />
             </div>
         );
-    },
-    logout: function() {
-
     }
 });
 
