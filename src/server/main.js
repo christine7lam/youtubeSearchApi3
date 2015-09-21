@@ -6,21 +6,12 @@ var express = require('express');
 var serve = require('serve-static');
 var googleapis = require('googleapis');
 
-// includes
-var configuration = require('./config/config');
-var locale = require('./helpers/locale');
-var i18n = require('./helpers/internationalization');
 
 // start app; assign to exports for circular dependencies
 var app = module.exports = express();
 
 // start socket server
 var io = require('./io').listen(app);
-
-// set configuration
-var config = configuration.init({
-    env: app.get('env')
-});
 
 
 // remove header
