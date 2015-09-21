@@ -3,10 +3,10 @@ var express = require('express');
 var router = express.Router();
 
 router.get(
-    ['/', '/validation'
+    ['/', '/validation', '/playlistsearch'
     ],
     function(req, res) {
-        res.render('index', { title: 'Device Manager' });
+        res.render('index', { title: 'You Tube Search API 3 DEMO' });
     }
 );
 

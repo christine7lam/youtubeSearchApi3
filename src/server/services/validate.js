@@ -11,7 +11,7 @@ module.exports = {
 
     validate: function(data) {
 
-        var DIRECTORY_ENDPOINT = getUri('/ingestservice/rest/discovery/');
+        var DIRECTORY_ENDPOINT = getUri('http://10.192.243.23:8080/ingestservice/rest/discovery/');
 
         return request.postAsync(DIRECTORY_ENDPOINT, {
             json: true,
