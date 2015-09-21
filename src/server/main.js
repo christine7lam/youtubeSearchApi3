@@ -11,10 +11,6 @@ var configuration = require('./config/config');
 var locale = require('./helpers/locale');
 var i18n = require('./helpers/internationalization');
 
-// parsers
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-
 // start app; assign to exports for circular dependencies
 var app = module.exports = express();
 
@@ -26,15 +22,6 @@ var config = configuration.init({
     env: app.get('env')
 });
 
-// statsd
-var statsd = require('node-statsd');
-
-app.locals.config = config;
-app.locals.config.isWindows = /^win/.test(process.platform);
-app.locals.statsd = new statsd({
-    host: app.locals.config.get('statsd').host,
-    port: app.locals.config.get('statsd').port
-});
 
 // remove header
 app.set('x-powered-by', false);
@@ -45,11 +32,6 @@ app.set('view engine', 'ejs');
 
 // app middleware
 app.use(serve(path.join(__dirname, '../../build'))); //static assets
-app.use(cookieParser());
-app.use(bodyParser.json()); //json parser
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(locale(i18n.locales.getSupportedCodes()));
-
 
 // routes
 require('./routes/index')(app);
