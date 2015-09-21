@@ -4,9 +4,7 @@ var path = require('path');
 //express
 var express = require('express');
 var serve = require('serve-static');
-var morgan = require('morgan');
-var session = require('express-session');
-var redis = require('connect-redis')(session);
+var googleapis = require('googleapis');
 
 // includes
 var configuration = require('./config/config');
@@ -47,41 +45,11 @@ app.set('view engine', 'ejs');
 
 // app middleware
 app.use(serve(path.join(__dirname, '../../build'))); //static assets
-app.use(morgan('dev')); //logs
 app.use(cookieParser());
 app.use(bodyParser.json()); //json parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(locale(i18n.locales.getSupportedCodes()));
 
-// session middleware
-var sessionMiddleware;
-if (app.locals.config.isWindows) {
-    sessionMiddleware = session({
-        secret: config.get('express').session.secret,
-        resave: false,
-        saveUninitialized: false
-    });
-} else {
-    sessionMiddleware = session({
-        store: new redis({
-            host: config.get('express').session.host,
-            port: config.get('express').session.port,
-            prefix: config.get('express').session.prefix,
-            ttl: config.get('express').session.ttl
-        }),
-        secret: config.get('express').session.secret,
-        resave: false,
-        saveUninitialized: false
-    });
-}
-
-// io sessions
-io.use(function(socket, next) {
-    sessionMiddleware(socket.request, socket.request.res, next);
-});
-
-// sessions
-app.use(sessionMiddleware);
 
 // routes
 require('./routes/index')(app);

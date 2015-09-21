@@ -7,6 +7,6 @@ var Reflux = require('reflux');
 module.exports = Reflux.createAction({
     asyncResult: true,
     children: [
-        'search'
+        'loadVideos'
     ]
 });

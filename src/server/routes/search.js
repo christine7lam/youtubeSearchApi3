@@ -11,9 +11,9 @@ var router = express.Router();
 var request = promise.promisifyAll(require('request'));
 
 //data service
-var service = require('../services/directory');
+var service = require('../services/search');
 
-router.get('/assets', function(req, res) {
+router.get('/', function(req, res) {
 
     if (typeof req.session.data.token === 'undefined') {
         return res.status(401).end();
@@ -21,7 +21,7 @@ router.get('/assets', function(req, res) {
 
     try {
 
-        service.getAssets(req.session.data.token).spread(function(response) {
+        service.search(req.session.data.token).spread(function(response) {
 
             if (response.statusCode === 200) {
                 return res.status(200).json({
