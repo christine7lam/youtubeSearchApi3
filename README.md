@@ -28,7 +28,6 @@ Now you can build the project:
 
 This will create a build directory with a document root file (index.html) as well as the associated JavaScript and CSS files; this process will also set up a watch on your files and rebuild the appropriate parts of your project when changes occur.
 
-**This process should continue to run while you are developing, you should run it with `forever` or open a new terminal or command prompt and execute the next step.**
 
 ***
 
