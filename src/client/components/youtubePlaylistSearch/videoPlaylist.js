@@ -20,17 +20,23 @@ var Playlist = React.createClass({
     getInitialState: function() {
         return {
             videos: [],
-            videoJson: null
+            videoJson: null,
+            selectedArtist: "The Script"
         }
     },
     componentDidMount: function() {
         this.listenTo(SearchStore, this.onSearch);
+        PlaylistAction.getVideos("The Script");
     },
     getVideos: function() {
         var jsonString = {
             q:  this.refs.artist.getDOMNode().value,
-            maxResults: "15"
+            maxResults: "21"
         }
+
+        this.setState({
+            selectedArtist: jsonString.q
+        });
 
         PlaylistAction.getVideos(jsonString.q);
     },
@@ -57,17 +63,18 @@ var Playlist = React.createClass({
                     <div className="container">
                         <div className="form-group col-md-2">
                             <select className="form-control" id="artist" ref="artist" onChange={this.getVideos}>
-                            <option>Select an artist</option>
                             <option>The Script</option>
                             <option>Elton John</option>
                             <option>Stevie Wonder</option>
+                            <option>Frank Sinatra</option>
+                            <option>Louis Armstrong</option>
                             </select>
                         </div>
                     </div>
                     <div className="col-md-12 col-md-centered text-center">
                         <div className="panel panel-default">
                             <div className="panel-heading">
-                                <h3>Music Videos</h3>
+                                <span><h5>Videos by</h5> <h3>{this.state.selectedArtist}</h3></span>
                             </div>
                             <div className="panel-body">
                                  <div className="panel">

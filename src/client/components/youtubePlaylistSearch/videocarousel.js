@@ -11,7 +11,12 @@ var SimpleSlider = React.createClass({
         this.props.videos.forEach(function(video, index){
             if(index >0){
             slides.push(
-                <div><center><img src={video.snippet.thumbnails.medium.url} width="196" height="110"></img></center>
+                <div>
+                    <br />
+                    <center>
+                        <img src={video.snippet.thumbnails.medium.url} width="196" height="110"></img>
+                    </center>
+                    <br />
                     <h4>{video.snippet.title}</h4>
                     by <h5>{video.snippet.channelTitle}</h5>
                     published <h6>{video.snippet.publishedAt}</h6>
