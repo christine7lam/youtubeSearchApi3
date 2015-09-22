@@ -71,8 +71,7 @@ var Playlist = React.createClass({
                             </div>
                             <div className="panel-body">
                                  <div className="panel">
-                                    {videoList}
-                                    <Carousel />
+                                    <Carousel videos={this.state.videos} />
                                 </div>
                             </div>
                         </div>

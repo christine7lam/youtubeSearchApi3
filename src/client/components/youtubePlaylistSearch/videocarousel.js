@@ -5,23 +5,31 @@ var React = require('react');
 var Slider = require('react-slick');
 
 var SimpleSlider = React.createClass({
+
     render: function () {
+        var slides = [];
+        this.props.videos.forEach(function(video, index){
+            if(index >0){
+            slides.push(
+                <div><center><img src={video.snippet.thumbnails.medium.url} width="196" height="110"></img></center>
+                    <h4>{video.snippet.title}</h4>
+                    by <h5>{video.snippet.channelTitle}</h5>
+                    published <h6>{video.snippet.publishedAt}</h6>
+                    </div>
+                );
+            }
+        });
         var settings = {
             dots: true,
-            infinite: true,
+            infinite: false,
             speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToShow: 5,
+            slidesToScroll: 5
         };
         return (
             <Slider {...settings}>
-        <div><h3>1</h3></div>
-        <div><h3>2</h3></div>
-        <div><h3>3</h3></div>
-        <div><h3>4</h3></div>
-        <div><h3>5</h3></div>
-        <div><h3>6</h3></div>
-        </Slider>
+                {slides}
+         </Slider>
         );
     }
 });
