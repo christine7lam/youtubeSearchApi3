@@ -51,23 +51,6 @@ module.exports = {
             'report*'
         ]
     },
-    images: {
-        src: src + '/public/images/**',
-        dest: dest + '/public/images'
-    },
-    lint: {
-        files: [
-            src + '/**/*.{css,js,html}'
-        ]
-    },
-    mocha: {
-        files: 'test/**/*.js',
-        options: {
-            ui: 'bdd',
-            reporter: 'spec',
-            timeout: 3000
-        }
-    },
     watch: {
         files: [
             src + '/**/*.js',
