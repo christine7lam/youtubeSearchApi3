@@ -28,6 +28,7 @@ Now you can build the project:
 
 This will create a build directory with a document root file (index.html) as well as the associated JavaScript and CSS files; this process will also set up a watch on your files and rebuild the appropriate parts of your project when changes occur.
 
+** For Mac, use SUDO when needed**
 
 ***
 
