@@ -7,6 +7,7 @@ var Reflux = require('reflux');
 
 //actions
 var PlaylistAction = require('../../actions/videoPlaylist');
+var MessagingActions = require('../../actions/messaging');
 
 //store
 var SearchStore = require('../../stores/videoPlaylist');
@@ -15,11 +16,13 @@ var Playlist = React.createClass({
     mixins: [Reflux.ListenerMixin],
     getInitialState: function() {
         return {
-            videos: []
+            videos: [],
+            videoJson: null
         }
     },
     componentDidMount: function() {
-        this.listenTo(SearchStore, this._onSearch);
+        this.listenTo(SearchStore, this.onSearch);
+        PlaylistAction.getVideos("The Script");
     },
     getVideos: function() {
         var jsonString = {
@@ -27,13 +30,27 @@ var Playlist = React.createClass({
             maxResults: "15"
         }
 
-        //load all assets
         PlaylistAction.getVideos(jsonString.q);
     },
+    onSearch: function(data) {
+        try {
+            this.setState({
+                videoJson: JSON.parse(data.body.results)
+            });
+            this.state.videos = this.state.videoJson.items;
+        }catch(exception){
+            MessagingActions.alert('Error while parsing JSON : check json format', 500000);
+        }
+    },
     render : function(){
+        var videoList = [];
+        this.state.videos.forEach(function(video, index) {
+           videoList.push(
+                <li>{video.snippet.title}</li>
+           );
+        });
         return (
             <div className="container">
-                    testing you tube page
                     <div className="form-group col-md-2">
                         <select className="form-control" id="artist" ref="artist" onChange={this.getVideos}>
                         <option>Select an artist</option>
@@ -42,11 +59,11 @@ var Playlist = React.createClass({
                         <option>Stevie Wonder</option>
                         </select>
                     </div>
+                <div className="panel">
+    {videoList}
                 </div>
+            </div>
         );
-    },
-    _onSearch: function(data) {
-        alert("passing back"+data.body.results);
     }
 });
 

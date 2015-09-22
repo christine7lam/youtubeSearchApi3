@@ -16,14 +16,12 @@ youTube.setKey('AIzaSyDnuvcIHmHC9YrlllvU3YS8dQjq4QGCnpI');
 
 router.post('/', function(req, res) {
     console.log("more stuff sinetubg"+req.body.data.q);
-    res.send('im the homedafsag page!');
-
-
+    //res.send('im the homedafsag page!');
 });
 
 router.get('/:artist', function(req, res) {
     console.log("********"+req.params.artist);
-    youTube.search(req.params.artist, 2, function(error, result) {
+    youTube.search(req.params.artist, 15, function(error, result) {
         if (error) {
             console.log(error);
         }
@@ -31,7 +29,7 @@ router.get('/:artist', function(req, res) {
             console.log(JSON.stringify(result, null, 2));
 
             res.json({
-                results: JSON.stringify(result, null, 2)
+                results: JSON.stringify(result, null, 15)
             });
         }
     });
