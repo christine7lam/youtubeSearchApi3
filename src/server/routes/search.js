@@ -13,12 +13,6 @@ var youTube = new YouTube();
 youTube.setKey('AIzaSyDnuvcIHmHC9YrlllvU3YS8dQjq4QGCnpI');
 
 
-
-router.post('/', function(req, res) {
-    //console.log("more stuff sinetubg"+req.body.data.q);
-    //res.send('im the homedafsag page!');
-});
-
 router.get('/:artist', function(req, res) {
     youTube.search(req.params.artist, 21, function(error, result) {
         if (error) {
