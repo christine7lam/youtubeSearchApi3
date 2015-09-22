@@ -10,7 +10,6 @@ var Carousel = require('./videocarousel');
 
 //actions
 var PlaylistAction = require('../../actions/videoPlaylist');
-var MessagingActions = require('../../actions/messaging');
 
 //store
 var SearchStore = require('../../stores/videoPlaylist');
@@ -47,7 +46,7 @@ var Playlist = React.createClass({
                 videos: JSON.parse(data.body.results).items
             });
         }catch(exception){
-            MessagingActions.alert('Error while parsing JSON : check json format', 500000);
+            console.log('Error while parsing JSON : check json format', 500000);
         }
     },
     render : function(){

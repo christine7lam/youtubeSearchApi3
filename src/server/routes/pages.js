@@ -3,10 +3,10 @@ var express = require('express');
 var router = express.Router();
 
 router.get(
-    ['/', '/validation','/playlistsearch', '/playlistsearch/*'
+    ['/', '/playlistsearch', '/playlistsearch/*'
     ],
     function(req, res) {
-        res.render('index', { title: 'Device Manager' });
+        res.render('index', { title: 'Yahoo - Interview Challenge - Christine Hei Pak Lam' });
     }
 );
 
