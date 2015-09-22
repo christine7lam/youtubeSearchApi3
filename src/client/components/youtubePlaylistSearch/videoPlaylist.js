@@ -22,7 +22,6 @@ var Playlist = React.createClass({
     },
     componentDidMount: function() {
         this.listenTo(SearchStore, this.onSearch);
-        PlaylistAction.getVideos("The Script");
     },
     getVideos: function() {
         var jsonString = {
@@ -35,20 +34,21 @@ var Playlist = React.createClass({
     onSearch: function(data) {
         try {
             this.setState({
-                videoJson: JSON.parse(data.body.results)
+                videoJson: JSON.parse(data.body.results),
+                videos: JSON.parse(data.body.results).items
             });
-            this.state.videos = this.state.videoJson.items;
         }catch(exception){
             MessagingActions.alert('Error while parsing JSON : check json format', 500000);
         }
     },
     render : function(){
         var videoList = [];
-        this.state.videos.forEach(function(video, index) {
-           videoList.push(
-                <li>{video.snippet.title}</li>
-           );
+        this.state.videos.forEach(function (video, index) {
+                videoList.push(
+                    <li>{video.snippet.title}</li>
+                );
         });
+
         return (
             <div className="container">
                     <div className="form-group col-md-2">
@@ -60,7 +60,7 @@ var Playlist = React.createClass({
                         </select>
                     </div>
                 <div className="panel">
-    {videoList}
+                    {videoList}
                 </div>
             </div>
         );
