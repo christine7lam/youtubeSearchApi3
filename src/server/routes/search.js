@@ -20,16 +20,15 @@ router.post('/', function(req, res) {
 });
 
 router.get('/:artist', function(req, res) {
-   // console.log("********"+req.params.artist);
-    youTube.search(req.params.artist, 15, function(error, result) {
+    youTube.search(req.params.artist, 21, function(error, result) {
         if (error) {
             console.log(error);
         }
         else {
-            console.log(JSON.stringify(result, null, 2));
+            //console.log(JSON.stringify(result, null, 2));
 
             res.json({
-                results: JSON.stringify(result, null, 15)
+                results: JSON.stringify(result, null, 21)
             });
         }
     });

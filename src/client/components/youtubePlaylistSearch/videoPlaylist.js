@@ -60,6 +60,7 @@ var Playlist = React.createClass({
 
         return (
             <div className="container">
+                <br />
                     <div className="container">
                         <div className="form-group col-md-2">
                             <select className="form-control" id="artist" ref="artist" onChange={this.getVideos}>
@@ -83,6 +84,9 @@ var Playlist = React.createClass({
                             </div>
                         </div>
                     </div>
+                <div className="navbar navbar-default navbar-fixed-bottom" role="navigation">
+                    <div className="navbar-text pull-right">Yahoo Interview Challenge - Christine Hei Pak Lam</div>
+                </div>
             </div>
         );
     }
