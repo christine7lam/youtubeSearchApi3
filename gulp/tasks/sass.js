@@ -3,8 +3,8 @@ var sass = require('gulp-sass');
 
 gulp.task('sass', function () {
 
-    //tycoon theme
-    gulp.src('src/client/public/themes/tycoon/main.scss')
+    //basic theme
+    gulp.src('src/client/public/themes/styles/main.scss')
         .pipe(sass({
             includePaths: [
                 'node_modules/bootstrap-sass/assets/stylesheets',
