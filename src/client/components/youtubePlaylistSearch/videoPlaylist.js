@@ -5,6 +5,9 @@
 var React = require('react');
 var Reflux = require('reflux');
 
+//components
+var Carousel = require('./videocarousel');
+
 //actions
 var PlaylistAction = require('../../actions/videoPlaylist');
 var MessagingActions = require('../../actions/messaging');
@@ -51,17 +54,29 @@ var Playlist = React.createClass({
 
         return (
             <div className="container">
-                    <div className="form-group col-md-2">
-                        <select className="form-control" id="artist" ref="artist" onChange={this.getVideos}>
-                        <option>Select an artist</option>
-                        <option>The Script</option>
-                        <option>Elton John</option>
-                        <option>Stevie Wonder</option>
-                        </select>
+                    <div className="container">
+                        <div className="form-group col-md-2">
+                            <select className="form-control" id="artist" ref="artist" onChange={this.getVideos}>
+                            <option>Select an artist</option>
+                            <option>The Script</option>
+                            <option>Elton John</option>
+                            <option>Stevie Wonder</option>
+                            </select>
+                        </div>
                     </div>
-                <div className="panel">
-                    {videoList}
-                </div>
+                    <div className="col-md-12 col-md-centered text-center">
+                        <div className="panel panel-default">
+                            <div className="panel-heading">
+                                <h3>Music Videos</h3>
+                            </div>
+                            <div className="panel-body">
+                                 <div className="panel">
+                                    {videoList}
+                                    <Carousel />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
         );
     }
