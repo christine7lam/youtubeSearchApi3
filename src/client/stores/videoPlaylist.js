@@ -16,7 +16,7 @@ var searchStore = Reflux.createStore({
         this.listenTo(SearchAction.failed, this.trigger);
 
     },
-    _getVideos: function(artist) {  console.log("**********"+artist);
+    _getVideos: function(artist) {
         request
             .get(SEARCH_ENDPOINT + '/' + artist)
             .set('Content-Type', 'application/json')
@@ -29,7 +29,6 @@ var searchStore = Reflux.createStore({
                 }
             });
     }
-
 });
 
 module.exports = searchStore;
