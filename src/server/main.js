@@ -4,8 +4,6 @@ var path = require('path');
 //express
 var express = require('express');
 var serve = require('serve-static');
-var morgan = require('morgan');
-var session = require('express-session');
 
 // parsers
 var bodyParser = require('body-parser');
@@ -26,7 +24,6 @@ app.set('view engine', 'ejs');
 
 // app middleware
 app.use(serve(path.join(__dirname, '../../build'))); //static assets
-app.use(morgan('dev')); //logs
 app.use(cookieParser());
 app.use(bodyParser.json()); //json parser
 app.use(bodyParser.urlencoded({ extended: false }));
