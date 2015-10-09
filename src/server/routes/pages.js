@@ -6,7 +6,7 @@ router.get(
     ['/', '/playlistsearch', '/playlistsearch/*'
     ],
     function(req, res) {
-        res.render('index', { title: 'Yahoo - Interview Challenge - Christine Hei Pak Lam' });
+        res.render('index', { title: 'Christine Hei Pak Lam' });
     }
 );
 

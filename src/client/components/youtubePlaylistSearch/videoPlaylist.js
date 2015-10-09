@@ -84,7 +84,7 @@ var Playlist = React.createClass({
                         </div>
                     </div>
                 <div className="navbar navbar-default navbar-fixed-bottom" role="navigation">
-                    <div className="navbar-text pull-right">Yahoo Interview Challenge - Christine Hei Pak Lam</div>
+                    <div className="navbar-text pull-right">Hei Pak Lam</div>
                 </div>
             </div>
         );
